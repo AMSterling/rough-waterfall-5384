@@ -1,0 +1,6 @@
+<h1>Customer: <%= @customer.name %></h1>
+  <% @customer.items.each_with_index do |item, index| %>
+    <div id="items-<%= index %>">
+    <p><%= item.name %></p>
+  <% end %>
+<p>Supermarket: <%= @customer.supermarket.name %></p>
