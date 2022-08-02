@@ -3,4 +3,5 @@
     <div id="items-<%= index %>">
     <p><%= item.name %></p>
   <% end %>
+<p>Total Price: <%= number_to_currency(@customer.total_price.fdiv(100)) %></p>
 <p>Supermarket: <%= @customer.supermarket.name %></p>
