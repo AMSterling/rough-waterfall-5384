@@ -66,6 +66,32 @@ RSpec.describe 'the customer show page' do
     expect(page).to have_content('Supermarket: Sprouts')
     expect(page).to_not have_content('Supermarket: King Soopers')
     expect(page).to_not have_content('Supermarket: Safeway')
+
+    visit customer_path(lucas)
+
+    expect(page).to have_content('Customer: Lucas Colwell')
+
+    within '#items-0' do
+      expect(page).to have_content('Bread')
+    end
+
+    within '#items-1' do
+      expect(page).to have_content('Apples')
+    end
+
+    within '#items-2' do
+      expect(page).to have_content('Meat')
+    end
+
+    expect(page).to_not have_content('Dani Coleman')
+    expect(page).to_not have_content('Gauri Joshi')
+    expect(page).to_not have_content('Candy')
+    expect(page).to_not have_content('Bananas')
+    expect(page).to_not have_content('Cheese')
+
+    expect(page).to have_content('Supermarket: King Soopers')
+    expect(page).to_not have_content('Supermarket: Sprouts')
+    expect(page).to_not have_content('Supermarket: Safeway')
   end
 
   it 'shows the total price of the customers items' do
@@ -116,5 +142,14 @@ RSpec.describe 'the customer show page' do
 
     visit customer_path(chris)
     expect(page).to have_content('Total Price: $9.50')
+
+    visit customer_path(lucas)
+    expect(page).to have_content('Total Price: $12.50')
+
+    visit customer_path(tyler)
+    expect(page).to have_content('Total Price: $12.00')
+
+    visit customer_path(gauri)
+    expect(page).to have_content('Total Price: $6.00')
   end
 end
